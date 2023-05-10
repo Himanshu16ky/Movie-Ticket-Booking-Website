@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MOVIES</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="color: white(255, 255, 255); background-color: black;">
+    <div class="aa">
+      <nav class="navbar navbar-expand-lg " style="background-image: linear-gradient(to left, #09146d, #770a83); ">
+        <div class="container-fluid">
+            <img style="height: 50px;" src="\static\userlogo.png" alt="userlogo" >
+          <a class="navbar-brand" href="#" style="position: relative; left: 30px;">
+            <h2 style="color: white;">    {{username}}</h2>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+              </li>
+              <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Link</a> -->
+              </li>
+            </ul>
+            <!-- <li
+              class="nav-item dropdown"
+              style="position: relative; right: 7%; list-style: none"
+            >
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Search by
+              </a>
+              <form action="/test" method = "POST">
+                <ul type = "submit" class="dropdown-menu" name = "dropdown">
+                  <li><a class="dropdown-item" type = "submit" value = "Movie name" href="#">Movie name</a></li>
+                  <li><a class="dropdown-item" type = "submit" value = "Location" href="#">Location</a></li>
+                  <li><a class="dropdown-item" type = "submit" value = "Rating" href="#">Rating</a></li>
+                  <li><a class="dropdown-item" type = "submit" value = "Venue" href="#">Venue</a></li>
+                </ul>
+              </form> -->
+
+              <form class="d-flex" role="search" action="/userdash/{{username}}" method="POST">
+
+                <div class="nav-item dropdown" style="position: relative; right: 5rem;">
+                    <a style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Search By
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" name="search_by" value="movie">Movie</button></li>  
+    
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" name="search_by" value="venue">Venue</button></li>
+    
+                      <li><hr class="dropdown-divider"></li>
+                      <li><button class="dropdown-item" name="search_by" value="tags">Tags</button></li>
+    
+                      <li><hr class="dropdown-divider"></li>
+                      <li><button class="dropdown-item" name="search_by" value="rating">Rating</button></li>
+                    </ul>
+                </div>
+    
+                <input style="position: relative; right: 4rem;" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_input">
+              </form>
+
+            </li>
+            <!-- <form
+              style="position: relative; right: 5%"
+              class="d-flex"
+              role="search"
+            >
+              <input
+                style="left: 200%"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                style="left: 200%"
+                class="btn btn-outline-success"
+                type="submit"
+              >
+                Search
+              </button>
+            </form> -->
+          </div>
+        </div>
+        <div
+          class="collapse navbar-collapse"
+          id="navbarNav"
+          style="position: relative; right: 3%"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/userdash/{{username}}">Home</a> -->
+            </li>
+            <li class="nav-item">
+              <a style="color: white;"
+                class="nav-link"
+                href="http://127.0.0.1:5000/booked/{{username}}"
+                >Bookings</a
+              >
+            </li>
+            <li class="nav-item">
+              <a style="color: white;" class="nav-link" href="http://127.0.0.1:5000">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"
+      ></script>
+    </div>
+    <div
+
+    >
+      <div class="container" style="position: relative; left: 2vw;">
+        {% for e in s %}
+        <div
+          style="
+          box-shadow: 0 4px 34px 0 purple, 0 6px 8px 0 purple;
+          /* box-shadow: 10px 10px 5px purple; */
+
+            position: relative;
+            display: inline-block;
+            display: flexbox; 
+            border-radius: 20px;
+            width: 36vw;
+            height: auto;
+            background-image: linear-gradient(to left, #770a83, #09146d);
+            margin: 30px;
+            /* float: left; */
+          "
+        >
+          <div class="bottom" style="width: auto; color: white;">
+            <!-- {{e.title}} -->
+            <div class="image" style="width: auto; ">
+              <img
+                class="poster"
+                style="
+                  position: relative;
+                  left: 1.5%;
+                  margin: 10px;
+                  width: 47%;
+                  /* border: 5px solid black; */
+                  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 20.2), 0 8px 34px 0 rgba(0, 0, 0, 53.19);
+
+                "
+                src="{{e.poster}}"
+                alt="poster"
+              />
+            </div>
+            <div
+              class="info"
+              style="
+                /* background-color: black; */
+                width: 17rem;
+                height: auto;
+                position: relative;
+                left: 2%;
+                top: 0%;
+                height: auto;
+              "
+            >
+              <h2>{{e.title}}</h2>
+              <span>rating: {{e.rating}}</span
+              ><span style="position: relative; float: right; right: 10%"
+                >rate:{{e.rated}}</span
+              >
+              <br />
+              <span> {{e.genere}}</span>
+              <span
+                style="
+                  position: relative;
+                  float: right;
+                  right: 10%;
+                  margin-left: 20%;
+                "
+                title="{{e.plot}}"
+                >plot ></span
+              >
+            </div>
+            <div
+              class="allvenue"
+              style="
+                position: absolute;
+                left: 18rem;
+                overflow-y: auto;
+                bottom: 0.2rem;
+                width: 16rem;
+                height: 29rem;
+                /* background-color: black; */
+              "
+            >
+              <center style="position: absolute">
+                {% for f in shows %}
+                <div
+                  style="
+                    position: relative;
+                    /* background-color: green; */
+                    left: 0.7rem;
+                    width: 14rem;
+                  "
+                >
+                  {% if f.showname == e.title %}
+                  {% set count = 1 %}
+                  <div
+                    style="
+                      position: relative;
+                      background-color: rgb(0, 0, 0);
+                      border: 2px solid rgb(0, 0, 0);
+                      margin: 0.5rem;
+                      border-radius: 6px;
+                      display: flexbox;
+                      float: left;
+                    "
+                  >
+                    {{f.venue_name}}
+                    <br />
+                    {{f.timing}}
+                    <br />
+                    <form action="/booking/{{f.serial}}/{{username}}">
+                      <button  
+          
+                      class="book" name="book" value="{{f.venue_name}}">
+                        Book show
+                      </button>
+                    </form>
+                  </div>
+
+                  {% endif %}
+                  
+                </div>
+                {% endfor %}
+                {% if count == 0 %}
+                    <span style="color: yellow;">No more shows </span>
+                    <p style="color: yellow;">available currently</p>
+              {% endif %}
+              </center>
+              
+            </div>
+            
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <style></style>
+  </body>
+</html>

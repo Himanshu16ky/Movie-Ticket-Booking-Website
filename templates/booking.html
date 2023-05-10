@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body style="overflow: hidden;">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-image: linear-gradient(to left, #09146d, #770a83);">
+    <div class="container-fluid">
+        <img style="height: 50px;" src="\static\userlogo.png" alt="userlogo" >
+      <a class="navbar-brand" href="#" style="position: relative; left: 30px;">
+        <h2 style="color: white;">{{username}} | </h2>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <!-- <span class="navbar-toggler-icon"></span> -->
+      </button>
+      <div style="position: relative; left: 22rem;" class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="http://127.0.0.1:5000">{{showname}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="http://127.0.0.1:5000"> - {{venue_name}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="http://127.0.0.1:5000"> - {{timing}}</a>
+          </li>
+        </ul>
+        <li
+          class="nav-item dropdown"
+          style="position: relative; right: 7%; list-style: none"
+        >
+        </li>
+        
+        <form
+          style="position: relative; right: 5%"
+          class="d-flex"
+          role="search"
+        >
+        </form>
+      </div>
+    </div>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarNav"
+      style="position: relative; right: 3%"
+    >
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a class="nav-link active" style="color: white;" aria-current="page" href="http://127.0.0.1:5000/userdash/{{username}}">Home</a>
+        </li>|
+        <li class="nav-item">
+          <a class="nav-link" style="color: white;" href="http://127.0.0.1:5000">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <br><br>
+    <center>
+      Seats left : {{x}}
+    </center>
+    <br>
+    <div style="color: rgb(14, 185, 65); font-size: 30px;">
+    <center >
+      {% with messages = get_flashed_messages() %}
+         {%  if  messages %}
+           {%  for  message  in  messages %} 
+           <p>{{ message }}</p>
+           {% endfor %}
+         {% endif %}
+       {% endwith %}
+      </center>
+      <div>
+      <br>
+    <center>
+        <div style="color: black;font-size: large;">
+        <form action="/booking/{{i}}/{{username}}" method="POST">
+            <div class="form-group" style="width:50%">
+              <label for="exampleInputEmail1">Number : </label>
+              <input name = "number" type="text" value = "0"   class="col-sm-2 col-form-label" id="number" aria-describedby="emailHelp" required>
+            </div>
+            <br>
+            <div class="form-group" style="width:50%">
+              <label for="exampleInputPassword1">Price : </label>
+              <input name = "price" type="text"  class="col-sm-2 col-form-label" id="price" value ="{{price}}" disabled >
+            </div>
+            <br>
+            <div class="form-group" style="width:50%">
+                <label for="exampleInputPassword1">Total : </label>
+                <!-- <input name = "amount" type="text"  class="col-sm-2 col-form-label"  disabled> -->
+                <span id = "amount" ></span>
+            </div>
+            <br>
+            <!-- <button type="submit" class="btn btn-primary" style="margin-right: 12%;">Submit</button> -->
+            {% if x|int >0 %}
+            <button action="/booking/{{i}}/{{username}}" type="submit"   class="btn btn-primary">Confirm Booking</button>
+            <br><br>
+            {% else %}
+              <h1 style="font-size: 35px; color: red;">Housefull !!</h1>
+            {% endif %}
+            
+          </form>
+          <a href="http://127.0.0.1:5000/userdash/{{serial}}/{{username}}"><button type="submit"   class="btn btn-primary">Go back</button></a>
+        </div>
+    </center>
+    
+    <script>
+      var num1Input = document.getElementById("price");
+      var num2Input = document.getElementById("number");
+      var sumSpan = document.getElementById("amount");
+  
+      num1Input.addEventListener("input", calculateproduct);
+      console.log(num1Input)
+      num2Input.addEventListener("input", calculateproduct);
+  
+      function calculateproduct() {
+        var price = parseInt(num1Input.value);
+        var number = parseInt(num2Input.value);
+        var amount = price * number;
+        sumSpan.innerHTML = amount;
+      }
+    </script>
+
+<!-- <script>
+        function myFunction() {
+          var number = parseInt(document.getElementById("{{number}}")).value;
+          console.log(number)
+          var price = parseInt(document.getElementById("{{price}}")).value;
+          console.log(price)
+          return number * price
+          // document.getElementById("{{amount}}").value = number * price;
+          // console.log(amount)
+        }
+        // function seats(){
+          
+        // }
+    </script> -->
+
+
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myDIV");
+          if (x.innerHTML === "Booking") {
+            x.innerHTML = "Swapped text!";
+          } else {
+            x.innerHTML = "Booked";
+          }
+        }
+        </script>
+        
+  
+</body>
+</html>
