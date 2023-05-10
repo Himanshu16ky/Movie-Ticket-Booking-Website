@@ -1,6 +1,4 @@
-convery app.txt to app.py
-
-the ebsite can be run by running the app.txt file as app.py file
+The website can be run by running the app.txt file as app.py file
 
 it can be run in command promt or in visual studio ide 
 after running it will give a local host link open link and website is ready
